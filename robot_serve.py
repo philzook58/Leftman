@@ -8,6 +8,9 @@ GPIO.setmode(GPIO.BCM)
 
 ForwardPin = 16
 BackwardPin = 18
+
+LeftPin = 26
+RightPin = 
 '''
  Motor1E = 22
  
@@ -18,8 +21,23 @@ Motor2E = 19
  
 GPIO.setup(ForwardPin,GPIO.OUT)
 GPIO.setup(BackwardPin,GPIO.OUT)
+GPIO.setup(LeftPin,GPIO.OUT)
+GPIO.setup(RightPin,GPIO.OUT)
 
- 
+def left():
+	GPIO.output(LeftPin,GPIO.HIGH)
+	GPIO.output(RightPin,GPIO.LOW)
+
+
+def right():
+	GPIO.output(RightPin,GPIO.HIGH)
+	GPIO.output(LeftPin,GPIO.LOW)
+
+def center():
+	GPIO.output(RightPin,GPIO.LOW)
+	GPIO.output(LeftPin,GPIO.LOW)
+
+
 def forward():
 	print "Going forwards"
 	GPIO.output(ForwardPin,GPIO.HIGH)
@@ -37,7 +55,8 @@ def stop():
 
 
 
-UDP_IP = "127.0.0.1"
+#UDP_IP = "127.0.0.1"
+UDP_IP = "0.0.0.0"
 UDP_PORT = 5005
 
 sock = socket.socket(socket.AF_INET, # Internet
@@ -52,6 +71,13 @@ while True:
     	stop()
     else:
     	forward()
+    if xdir < -0.1:
+    	left()
+    elif xdir > 0.1:
+    	right()
+    else:
+    	center()
+
 
 
 GPIO.cleanup()
