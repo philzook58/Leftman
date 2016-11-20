@@ -53,7 +53,7 @@ def stop():
 	GPIO.output(BackwardPin,GPIO.LOW)
 
 
-
+stop()
 
 #UDP_IP = "127.0.0.1"
 UDP_IP = "0.0.0.0"
