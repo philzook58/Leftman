@@ -10,7 +10,7 @@ ForwardPin = 16
 BackwardPin = 18
 
 LeftPin = 26
-RightPin = 
+RightPin = 19
 '''
  Motor1E = 22
  
