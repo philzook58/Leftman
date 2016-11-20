@@ -54,6 +54,7 @@ def stop():
 
 
 stop()
+center()
 
 #UDP_IP = "127.0.0.1"
 UDP_IP = "0.0.0.0"
@@ -65,12 +66,14 @@ sock.bind((UDP_IP, UDP_PORT))
 
 while True:
     data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
-    xdir, rtrigger = pickle.loads(data)
-    print "received message:",
-    if rtrigger < -0.9:
-    	stop()
-    else:
+    xdir, rtrigger, ltrigger = pickle.loads(data)
+    #print "received message:",
+    if rtrigger > -0.9:
     	forward()
+    elif ltrigger > -0.9:
+    	backward()
+    else:
+    	stop()
     if xdir < -0.1:
     	left()
     elif xdir > 0.1:

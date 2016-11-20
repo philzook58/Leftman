@@ -40,13 +40,16 @@ while 1:
 	xdir = _joystick.get_axis(0)
 
 	rtrigger = _joystick.get_axis(5)
+	ltrigger = _joystick.get_axis(4)
 	#deadzone
 	if abs(xdir) < 0.2:
 		xdir = 0.0
 	if rtrigger < -0.9:
 		rtrigger = -1.0
+	if ltrigger < -0.9:
+		ltrigger = -1.0
 
-	MESSAGE = pickle.dumps([xdir,rtrigger])
+	MESSAGE = pickle.dumps([xdir,rtrigger,ltrigger])
 	sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
 
 	clock.tick(30)
