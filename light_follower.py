@@ -1,16 +1,31 @@
 import car
 import time
 import picamera
-import numpy as np
+import picamera.array
 import cv2
 
+radius = 5
+
+myCar = car.Car()
+
 with picamera.PiCamera() as camera:
-    camera.resolution = (320, 240)
-    camera.framerate = 24
+    camera.start_preview()
     time.sleep(2)
-    image = np.empty((480, 640, 3), dtype=np.uint8)
-    camera.capture(image, 'bgr')
-    #gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    #blur = cv2.GaussianBlur(gray, (radius, radius), 0)
-    #(minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(blur)
-    #print(maxLoc)
+    while True:
+	with picamera.array.PiRGBArray(camera) as stream:
+		camera.capture(stream, format='bgr')
+        	# At this point the image is available as stream.array
+        	image = stream.array
+        	gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        	#blur = cv2.GaussianBlur(gray, (radius, radius), 0)
+        	(minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
+        	print(maxLoc[0])
+		if maxLoc[0] < 200:
+			myCar.right() 
+		elif maxLoc[0] > 520:
+			myCar.left()
+		time.sleep(0.1)
+		myCar.forward()
+		time.sleep(0.1)
+		myCar.stop()
+		myCar.center()
