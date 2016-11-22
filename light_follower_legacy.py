@@ -14,6 +14,6 @@ time.sleep(0.1)
 camera.capture(rawCapture, format="bgr")
 image = rawCapture.array
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-blur = cv2.GaussianBlur(gray, (radius, radius), 0)
-(minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(blur)
+#blur = cv2.GaussianBlur(gray, (radius, radius), 0)
+(minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
 print(maxLoc)
