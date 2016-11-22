@@ -1,4 +1,4 @@
-import carpwm
+import pwmcar as car
 import time
 import picamera
 import picamera.array
@@ -24,8 +24,8 @@ with picamera.PiCamera() as camera:
         	(minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
         	print(maxLoc[0])
 		if maxLoc[0] < 200:
-			myCar.right()
+			myCar.right(1)
 		elif maxLoc[0] > 520:
-			myCar.left()
+			myCar.left(1)
 		else:
-            myCar.center()
+			myCar.center()
