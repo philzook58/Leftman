@@ -12,7 +12,7 @@ with picamera.PiCamera() as camera:
     camera.start_preview()
     time.sleep(2)
 
-    myCar.forward(0.25)
+    myCar.forward(25)
 
     while True:
 	with picamera.array.PiRGBArray(camera) as stream:
@@ -24,8 +24,8 @@ with picamera.PiCamera() as camera:
         	(minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
         	print(maxLoc[0])
 		if maxLoc[0] < 200:
-			myCar.right(1)
+			myCar.right(100)
 		elif maxLoc[0] > 520:
-			myCar.left(1)
+			myCar.left(100)
 		else:
 			myCar.center()

@@ -10,35 +10,35 @@ class PWMCar():
 		GPIO.setup(left,GPIO.OUT)
 		GPIO.setup(right,GPIO.OUT)
 
-		self.forward = GPIO.PWM(fwd, 100)
-		self.reverse = GPIO.PWM(rev, 100)
-		self.left = GPIO.PWM(left, 100)
-		self.right = GPIO.PWM(right, 100)
+		self.forwardPWM = GPIO.PWM(fwd, 100)
+		self.reversePWM = GPIO.PWM(rev, 100)
+		self.leftPWM = GPIO.PWM(left, 100)
+		self.rightPWM = GPIO.PWM(right, 100)
 
 		self.stop()
 		self.center()
 
 	def left(self, dc):
-		self.left.start(dc)
-		self.right.stop()
+		self.leftPWM.start(dc)
+		self.rightPWM.stop()
 
 	def right(self, dc):
-		self.right.start(dc)
-		self.left.stop()
+		self.rightPWM.start(dc)
+		self.leftPWM.stop()
 
 	def center(self):
-		self.left.stop()
-		self.right.stop()
+		self.leftPWM.stop()
+		self.rightPWM.stop()
 
 
 	def forward(self, dc):
-		self.forward.start(dc)
-		self.reverse.stop()
+		self.forwardPWM.start(dc)
+		self.reversePWM.stop()
 
 	def reverse(self, dc):
-		self.reverse.start(dc)
-		self.forward.stop()
+		self.reversePWM.start(dc)
+		self.forwardPWM.stop()
 
 	def stop(self):
-		self.forward.stop()
-		self.reverse.stop()
+		self.forwardPWM.stop()
+		self.reversePWM.stop()
