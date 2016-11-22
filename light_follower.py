@@ -12,9 +12,15 @@ rawCapture = PiRGBArray(camera)
 time.sleep(0.1)
 
 # grab an image from the camera
-camera.capture(rawCapture, format="bgr")
-image = rawCapture.array
+while True:
+    camera.capture(rawCapture, format="bgr")
+    image = rawCapture.array
 
-# display the image on screen and wait for a keypress
-cv2.imshow("Image", image)
-cv2.waitKey(0)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    gray = cv2.GaussianBlur(gray, (radius, radius), 0)
+    (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
+    image = orig.copy()
+    cv2.circle(image, maxLoc, radius, (255, 0, 0), 2)
+
+    print maxLoc
