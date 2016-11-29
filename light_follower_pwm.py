@@ -1,4 +1,4 @@
-import pwmcar as car
+from car import pwmcar
 import time
 import picamera
 import picamera.array
@@ -6,7 +6,7 @@ import cv2
 
 radius = 5
 
-myCar = car.PWMCar()
+myCar = pwmcar.PWMCar()
 
 with picamera.PiCamera() as camera:
     camera.start_preview()
