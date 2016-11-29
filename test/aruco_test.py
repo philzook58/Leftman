@@ -11,12 +11,13 @@ with picamera.PiCamera() as camera:
     camera.resolution = (320, 240)
     camera.framerate = 24
     time.sleep(2)
-    frame = np.empty((240, 320, 3), dtype=np.uint8)
+    image = np.empty(240* 320* 3, dtype=np.uint8)
 
     while(True):
         # Capture frame-by-frame
         #ret, frame = cap.read()
-        camera.capture(frame, 'bgr')
+        camera.capture(image, 'bgr')
+        frame = image.reshape((240, 320, 3))
         #print(frame.shape) #480x640
         # Our operations on the frame come here
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
