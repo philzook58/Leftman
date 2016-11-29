@@ -16,7 +16,7 @@ with picamera.PiCamera() as camera:
     while(True):
         # Capture frame-by-frame
         #ret, frame = cap.read()
-        camera.capture(image, 'bgr')
+        camera.capture(frame, 'bgr')
         #print(frame.shape) #480x640
         # Our operations on the frame come here
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
