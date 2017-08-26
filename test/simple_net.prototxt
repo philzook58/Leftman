@@ -1,0 +1,11 @@
+name: "Simple"
+layer {
+  name: "input"
+  type: "Data"
+  top: "data"
+}
+layer {
+  name: "output"
+  bottom: "data"
+  top: "output"
+}
