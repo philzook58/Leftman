@@ -20,11 +20,11 @@ class PWMCar():
 		self.stop()
 		self.center()
 
-	def left(self, dc):
+	def left(self, dc=100):
 		self.leftPWM.start(dc)
 		self.rightPWM.stop()
 
-	def right(self, dc):
+	def right(self, dc=100):
 		self.rightPWM.start(dc)
 		self.leftPWM.stop()
 
@@ -33,11 +33,11 @@ class PWMCar():
 		self.rightPWM.stop()
 
 
-	def forward(self, dc):
+	def forward(self, dc=67):
 		self.forwardPWM.start(dc)
 		self.reversePWM.stop()
 
-	def reverse(self, dc):
+	def reverse(self, dc=67):
 		self.reversePWM.start(dc)
 		self.forwardPWM.stop()
 

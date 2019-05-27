@@ -4,13 +4,6 @@ from random import randint
 
 car = pwmcar.PWMCar()
 
-car.forward()
-
-while not car.isHome():
-	print "Not Home"
-	moveRandom()
-	time.sleep(1)
-
 def moveRandom():
 	steer = randint(0,2)
 	dir = randint(0,1)
@@ -24,6 +17,13 @@ def moveRandom():
 		car.forward()
 	elif dir == 1:
 		car.reverse()
+
+
+while not car.isHome():
+        print "Not Home"
+        moveRandom()
+        time.sleep(1)
+
 
 
 car.stop()
